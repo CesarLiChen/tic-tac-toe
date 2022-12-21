@@ -1,4 +1,26 @@
+const PLAYER_ONE_SYMBOL = "X";
+const PLAYER_TWO_SYMBOL = "O";
+
 class TicTacToeGame {
+
+	handleEventClick(event) {
+		console.log(event.target.id);
+		this.executeMove(event.target.id);
+	}
+
+	executeMove(moveIndex) {
+		if(this.board[moveIndex] == "") {
+			this.board[moveIndex] = this.currentPlayer;
+
+			// Ternary operator
+			this.currentPlayer = (
+				this.currentPlayer == PLAYER_ONE_SYMBOL ? 
+				PLAYER_TWO_SYMBOL : 
+				PLAYER_ONE_SYMBOL
+				);
+			console.log(this.board);
+		}
+	}
 
 	drawBoard() {
 		// erases/cleans any element in the body
@@ -9,6 +31,9 @@ class TicTacToeGame {
 		let gameBoard = document.createElement("div");
 		gameBoard.id = "gameBoard";
 		gameBoard.classList.add("board");
+
+		// Event listener creation
+		gameBoard.addEventListener("click", this.handleEventClick.bind(this));
 
 		/*
 			For every element of the 'board' array:
@@ -29,7 +54,6 @@ class TicTacToeGame {
 	}
 
 	start() {
-
 		// Creates array to represent board.
 		this.board = 
 			[
@@ -37,6 +61,8 @@ class TicTacToeGame {
 			"", "", "",
 			"", "", ""
 			];
+
+		this.currentPlayer = PLAYER_ONE_SYMBOL;
 
 		this.drawBoard();
 	}
