@@ -18,8 +18,22 @@ class TicTacToeGame {
 				PLAYER_TWO_SYMBOL : 
 				PLAYER_ONE_SYMBOL
 				);
+
+			this.updateBoard();
 			console.log(this.board);
 		}
+	}
+
+	updateBoard() {
+		let gameBoard = document.getElementById("gameBoard");
+		let squareElements = gameBoard.childNodes;
+
+		// Updates the <div>s created, compared to boarda array.
+		squareElements.forEach((element, index) => {
+			if (element.innerHTML != this.board[index]) {
+				element.innerHTML = this.board[index];
+			}
+		});
 	}
 
 	drawBoard() {
@@ -61,9 +75,7 @@ class TicTacToeGame {
 			"", "", "",
 			"", "", ""
 			];
-
 		this.currentPlayer = PLAYER_ONE_SYMBOL;
-
 		this.drawBoard();
 	}
 }
