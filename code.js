@@ -73,7 +73,8 @@ class TicTacToeGame {
 		gameBoard.id = "gameBoard";
 		gameBoard.classList.add("board");
 
-		// Event listener creation
+		// Event listener creation, bind current square (<div>) and
+		// send it to handleEventClick function.
 		gameBoard.addEventListener("click", this.handleEventClick.bind(this));
 
 		/*
